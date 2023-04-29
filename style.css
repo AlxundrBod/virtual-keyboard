@@ -1,0 +1,56 @@
+.body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
+}
+.keyboard {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-height: 70rem;
+  max-width: 50rem;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key {
+  margin: 0.1rem;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.topSymbol {
+  font-size: 15px;
+}
+
+.space {
+  width: 263px;
+}
+
+.backspace {
+  width: 110px;
+}
+
+.caps {
+  width: 60px;
+}
+
+.shift {
+  width: 90px;
+}
+
+.enter {
+  width: 100px;
+}
