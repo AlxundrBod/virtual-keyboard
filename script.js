@@ -14,6 +14,11 @@ const rows = [
 const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
 
+const textArea = document.createElement('textarea');
+textArea.classList.add('textArea');
+
+keyboard.appendChild(textArea);
+
 for (let i = 0; i < rows.length; i += 2) {
   const row = document.createElement('div');
   row.classList.add('keyboard-row');
@@ -44,6 +49,34 @@ for (let i = 0; i < rows.length; i += 2) {
       key.classList.add('shift');
     }
 
+    if (rows[i + 1][j] === 'Win') {
+      key.classList.add('win');
+    }
+
+    if (rows[i + 1][j] === 'Alt') {
+      key.classList.add('alt');
+    }
+
+    if (rows[i + 1][j] === 'Ctrl') {
+      key.classList.add('ctrl');
+    }
+
+    if (rows[i + 1][j] === '↑') {
+      key.classList.add('arrowup');
+    }
+
+    if (rows[i + 1][j] === '←') {
+      key.classList.add('arrowleft');
+    }
+
+    if (rows[i + 1][j] === '↓') {
+      key.classList.add('arrowdown');
+    }
+
+    if (rows[i + 1][j] === '→') {
+      key.classList.add('arrowright');
+    }
+
     if (rows[i + 1][j] === 'Enter') {
       key.classList.add('enter');
     }
@@ -53,3 +86,68 @@ for (let i = 0; i < rows.length; i += 2) {
 }
 
 document.body.appendChild(keyboard);
+
+document.addEventListener('keydown', (event) => {
+  const keydown = event.key.toLowerCase();
+  const virtualKey = keyboard.querySelector('.key .bottomSymbol:not(.topSymbol):not(:empty):not(.caps):not(.shift):not(.backspace):not(.enter):not(.space):not(.tab):not(.ctrl):not(.alt):not(.win):not(.arrow):not(:has(*))');
+  if (virtualKey) {
+    if (keydown === 'backspace') {
+      keyboard.querySelector('.backspace').classList.add('active');
+    } else if (keydown === 'capslock') {
+      keyboard.querySelector('.caps').classList.toggle('active');
+    } else if (keydown === 'enter') {
+      keyboard.querySelector('.enter').classList.add('active');
+    } else if (keydown === 'shift') {
+      keyboard.querySelectorAll('.shift').forEach((key) => key.classList.add('active'));
+    } else if (keydown === 'alt') {
+      keyboard.querySelectorAll('.alt').forEach((key) => key.classList.add('active'));
+    } else if (keydown === 'control') {
+      keyboard.querySelectorAll('.ctrl').forEach((key) => key.classList.add('active'));
+    } else if (keydown === 'meta') {
+      keyboard.querySelectorAll('.win').forEach((key) => key.classList.add('active'));
+    } else if (keydown === ' ') {
+      keyboard.querySelector('.space').classList.add('active');
+    } else if (keydown === 'tab') {
+      keyboard.querySelector('.tab').classList.add('active');
+    } else if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(keydown)) {
+      keyboard.querySelector(`.${keydown}`).classList.add('active');
+    } else {
+      const keys = keyboard.querySelectorAll('.key .bottomSymbol:not(.topSymbol):not(:empty)');
+      keys.forEach((key) => {
+        if (key.textContent.toLowerCase() === event.key.toLowerCase()) {
+          key.parentNode.classList.add('active');
+        }
+      });
+    }
+  }
+});
+
+document.addEventListener('keyup', (event) => {
+  const keyup = event.key.toLowerCase();
+  if (keyup === 'backspace') {
+    keyboard.querySelector('.backspace').classList.remove('active');
+  } else if (keyup === 'enter') {
+    keyboard.querySelector('.enter').classList.remove('active');
+  } else if (keyup === 'shift') {
+    keyboard.querySelectorAll('.shift').forEach((key) => key.classList.remove('active'));
+  } else if (keyup === 'control') {
+    keyboard.querySelectorAll('.ctrl').forEach((key) => key.classList.remove('active'));
+  } else if (keyup === 'alt') {
+    keyboard.querySelectorAll('.alt').forEach((key) => key.classList.remove('active'));
+  } else if (keyup === 'meta') {
+    keyboard.querySelectorAll('.win').forEach((key) => key.classList.remove('active'));
+  } else if (keyup === ' ') {
+    keyboard.querySelector('.space').classList.remove('active');
+  } else if (keyup === 'tab') {
+    keyboard.querySelector('.tab').classList.remove('active');
+  } else if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(keyup)) {
+    keyboard.querySelector(`.${keyup}`).classList.remove('active');
+  } else {
+    const keys = keyboard.querySelectorAll('.key .bottomSymbol:not(.topSymbol):not(:empty)');
+    keys.forEach((key) => {
+      if (key.textContent.toLowerCase() === event.key.toLowerCase()) {
+        key.parentNode.classList.remove('active');
+      }
+    });
+  }
+});
