@@ -32,11 +32,11 @@
 }
 
 .key:hover {
-  background-color: aqua;
+  background-color: rgba(60, 60, 60, 0.2);
 }
 
 .active {
-  background-color: blue;
+  background-color: rgba(60, 60, 60, 0.6);
 }
 
 .topSymbol {
@@ -48,23 +48,51 @@
 }
 
 .backspace {
-  width: 110px;
+  width: 100px;
+  font-size: 16px;
 }
 
 .caps {
-  width: 60px;
+  width: 105px;
 }
 
 .shift {
-  width: 90px;
+  width: 105px;
 }
 
 .enter {
-  width: 100px;
+  width: 105px;
+}
+
+.tab {
+  width: 105px;
 }
 
 .textArea {
   height: 150px;
   width: 700px;
   margin: 20px;
+}
+
+.tab,
+.enter,
+.caps,
+.shift,
+.ctrl,
+.alt,
+.win,
+.backspace,
+.space {
+  font-weight: 600;
+  color: rgba(60, 60, 60, 1);
+}
+
+.description {
+  text-align: center;
+}
+
+.descriptionFirstRow,
+.descriptionSecondRow {
+  font-size: 20px;
+  font-weight: 600;
 }

@@ -101,6 +101,21 @@ function highlights() {
 
 // Highlights the key on the virtual keyboard END
 
+// mouse clicks on buttons of the virtual keyboard START
+
+function attachKeyListeners() {
+  const pressedKeys = document.querySelectorAll('.key');
+
+  pressedKeys.forEach((key) => {
+    key.addEventListener('click', () => {
+      const keyText = key.querySelector('.bottomSymbol').textContent;
+      textArea.value += keyText;
+    });
+  });
+}
+
+// mouse clicks on buttons of the virtual keyboard END
+
 // Create keyboard START
 
 function createKeyboard() {
@@ -196,9 +211,10 @@ function switchLanguage() {
   }
 
   createKeyboard();
+  attachKeyListeners();
 
   document.addEventListener('keydown', (event) => {
-    if (event.ctrlKey && event.altKey) {
+    if (event.altKey && event.shiftKey) {
       event.preventDefault();
       if (rows === rowsEnglish) {
         rows = rowsRussian;
@@ -209,6 +225,7 @@ function switchLanguage() {
       }
       keyboard.innerHTML = '';
       createKeyboard();
+      attachKeyListeners();
     }
   });
 }
