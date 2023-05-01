@@ -233,3 +233,19 @@ function switchLanguage() {
 switchLanguage();
 
 // Switch language END
+
+// description START
+
+const description = document.createElement('div');
+const descriptionFirstRow = document.createElement('p');
+const descriptionSecondRow = document.createElement('p');
+descriptionFirstRow.classList.add('descriptionFirstRow');
+descriptionSecondRow.classList.add('descriptionSecondRow');
+description.classList.add('description');
+keyboard.appendChild(description);
+description.appendChild(descriptionFirstRow);
+description.appendChild(descriptionSecondRow);
+descriptionFirstRow.textContent = 'Клавиатура создана в операционной системе Windows';
+descriptionSecondRow.textContent = 'Для переключения языка используйте комбинацию: Alt + Shift';
+
+// description END
